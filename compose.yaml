@@ -1,11 +1,25 @@
 name: playground
+version: "3"
 services:
-    app:
+    webserver:
         build: .
         ports:
             - "3000:3000"
     reverse-proxy:
-        build: reverse-proxy.dockerfile
+        image: caddy:latest
+        cap_add:
+            - NET_ADMIN
+        depends_on:
+            - webserver
         ports:
             - "80:80"
             - "443:443"
+            - "443:443/udp"
+        volumes:
+            - $PWD/Caddyfile:/etc/caddy/Caddyfile
+            - config:/config
+            - data:/data
+
+volumes:
+    config:
+    data:
