@@ -1,3 +1,4 @@
+# TODO: Restart always unless manually stopped
 name: webserver-plus-reverse-proxy-container
 version: "3"
 services:
