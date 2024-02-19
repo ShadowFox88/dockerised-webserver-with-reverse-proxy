@@ -1,0 +1,11 @@
+name: playground
+services:
+    app:
+        build: .
+        ports:
+            - "3000:3000"
+    reverse-proxy:
+        build: reverse-proxy.dockerfile
+        ports:
+            - "80:80"
+            - "443:443"
