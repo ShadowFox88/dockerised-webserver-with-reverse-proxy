@@ -1,4 +1,3 @@
-# TODO: Restart always unless manually stopped
 name: webserver-plus-reverse-proxy-container
 version: "3"
 services:
@@ -6,12 +5,14 @@ services:
         build: .
         environment:
             - TERM=xterm-256color
+        restart: unless-stopped
         ports:
             - "3000:3000"
     reverse-proxy:
         image: caddy:latest
         environment:
             - TERM=xterm-256color
+        restart: unless-stopped
         cap_add:
             - NET_ADMIN
         depends_on:
