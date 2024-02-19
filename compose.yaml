@@ -1,4 +1,4 @@
-name: playground
+name: webserver-plus-reverse-proxy-container
 version: "3"
 services:
     webserver:
