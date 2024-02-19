@@ -9,7 +9,7 @@ COPY --chown=node:node package.json .
 RUN corepack enable && pnpm install
 
 COPY --chown=node:node . .
-RUN pnpm build
+RUN pnpm build --no-lint
 
 FROM node:20.11.1-bookworm-slim AS runtime
 WORKDIR /app
