@@ -1,8 +1,14 @@
+.dockerignore
 .editorconfig
+.git/
 .gitignore
+.next/
 .prettierignore
 .prettierrc
 Caddyfile
+Dockerfile
 LICENSE
 README.md
+compose.yaml
 node_modules/
+npm-debug.log
