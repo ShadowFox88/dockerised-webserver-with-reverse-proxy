@@ -1,7 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM node:latest AS build
 WORKDIR /app
-ENV TERM xterm-256color
 
 RUN apt-get update && apt-get upgrade -y
 
