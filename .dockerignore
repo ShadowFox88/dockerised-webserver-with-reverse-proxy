@@ -2,6 +2,7 @@
 .gitignore
 .prettierignore
 .prettierrc
+Caddyfile
 LICENSE
 README.md
 node_modules/
