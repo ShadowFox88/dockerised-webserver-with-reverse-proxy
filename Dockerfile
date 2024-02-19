@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM node:latest
+FROM node:20-bullseye-slim
 WORKDIR /app
 ENV TERM=xterm-256color
 
