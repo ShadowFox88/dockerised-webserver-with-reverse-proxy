@@ -2,13 +2,15 @@
 FROM node:latest AS build
 WORKDIR /app
 
-RUN apt-get update && apt-get upgrade -y
+RUN ["apt-get", "update"]
+RUN ["apt-get", "upgrade", "-y"]
 
 COPY --chown=node:node package.json .
-RUN corepack enable && pnpm install
+RUN ["corepack", "enable"]
+RUN ["pnpm", "install"]
 
 COPY --chown=node:node . .
-RUN pnpm build --no-lint
+RUN ["pnpm", "build", "--no-lint"]
 
 FROM node:20.11.1-bookworm-slim AS runtime
 WORKDIR /app
