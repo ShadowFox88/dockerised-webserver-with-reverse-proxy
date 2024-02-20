@@ -5,7 +5,7 @@ WORKDIR /app
 RUN ["apt-get", "update"]
 RUN ["apt-get", "upgrade", "-y"]
 
-COPY --chown=node:node package.json .
+COPY --chown=node:node package.json pnpm-lock.yaml ./
 RUN ["corepack", "enable"]
 RUN ["pnpm", "install"]
 
