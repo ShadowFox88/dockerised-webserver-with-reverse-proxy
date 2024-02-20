@@ -1,11 +1,8 @@
 # syntax=docker/dockerfile:1
 FROM node:20.11.1-bookworm-slim AS base
 WORKDIR /app
-
 RUN ["corepack", "enable"]
-RUN --mount=type=cache,id=apt-get,target=/var/cache/apt ["apt-get", "update"]
-RUN --mount=type=cache,id=apt-get,target=/var/cache/apt ["apt-get", "upgrade", "-y"]
-COPY --chown=node:node . .
+COPY . .
 
 FROM base AS prod-deps
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store ["pnpm", "install", "--prod", "--frozen-lockfile"]
@@ -14,9 +11,10 @@ FROM base AS build
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store ["pnpm", "install", "--frozen-lockfile"]
 RUN ["pnpm", "build", "--no-lint"]
 
-FROM base
-COPY --from=prod-deps /app/node_modules node_modules
+FROM gcr.io/distroless/nodejs20-debian12 AS runtime
+WORKDIR /app
+COPY --from=base /app .
 COPY --from=build /app/.next .next
+COPY --from=prod-deps /app/node_modules node_modules
 EXPOSE 3000
-USER node
-ENTRYPOINT ["npm", "start"]
+CMD [".next/standalone/server.js"]
