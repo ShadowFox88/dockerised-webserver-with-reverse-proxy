@@ -20,4 +20,4 @@ COPY --chown=node:node --from=build /app .
 
 EXPOSE 3000
 USER node
-CMD ["npm", "start"]
+ENTRYPOINT ["npm", "start"]
