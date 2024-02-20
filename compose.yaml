@@ -5,6 +5,8 @@ services:
         build: .
         environment:
             - TERM=xterm-256color
+            - PNPM_HOME="/pnpm"
+            - PATH="$PNPM_HOME:$PATH"
         restart: unless-stopped
         ports:
             - "3000:3000"
