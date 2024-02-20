@@ -16,5 +16,4 @@ WORKDIR /app
 COPY --from=base /app .
 COPY --from=build /app/.next .next
 COPY --from=prod-deps /app/node_modules node_modules
-EXPOSE 3000
 CMD [".next/standalone/server.js"]
