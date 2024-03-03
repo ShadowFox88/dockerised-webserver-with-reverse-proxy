@@ -9,7 +9,8 @@
         "format": "prettier --write .",
         "preview": "next build && next start",
         "start": "next start",
-        "lint": "next lint && tsc"
+        "lint": "next lint && tsc",
+        "compose": "docker compose up"
     },
     "dependencies": {
         "lodash": "^4.17.21",
